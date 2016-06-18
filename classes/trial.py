@@ -82,7 +82,7 @@ figures = (
     'hexagon'
 )
 
-symbols = list(set("~!@#$%^&*?|"))
+symbols = list(set("~!@#%&*?|"))
 
 
 class Trial:
@@ -172,8 +172,50 @@ class Trial:
             else:
                 relation = stimulus_2 + stimulus_type + stimulus_1
                 relations_list.append(relation)
-        print relations_list
-        task, answer = self.create_task(chain_of_letters)
+
+        # Generate task and answer
+        def good_bad_relation(relations_list, relations_chain):
+            if self.trial_type == 1:
+                first_task = random.choice(relations_list)
+                if first_task[1] == Relations['minor']:
+                    second_task = first_task[0] + Relations['major'] + first_task[2]
+                else:
+                    second_task = first_task[0] + Relations['minor'] + first_task[2]
+                return [first_task, second_task]
+            elif self.trial_type == 2:
+                second_task = random.choice(relations_list)[::-1]
+                if second_task[1] == Relations['minor']:
+                    first_task = second_task[0] + Relations['major'] + second_task[2]
+                else:
+                    first_task = second_task[0] + Relations['minor'] + second_task[2]
+                return [first_task, second_task]
+            elif self.trial_type == 3:
+                first = random.randint(0, self.n - 2)
+                second = first + 2
+            else:
+                first = random.randint(0, self.n - 3)
+                second = first + 3
+            if random.randint(0, 1):
+                first_task = relations_chain[first] + Relations['minor'] + relations_chain[second]
+                second_task = relations_chain[first] + Relations['major'] + relations_chain[second]
+            else:
+                first_task = relations_chain[second] + Relations['major'] + relations_chain[first]
+                second_task = relations_chain[second] + Relations['minor'] + relations_chain[first]
+
+            return [first_task, second_task]
+
+        # Creating task and answer
+        if self.bin:
+            task = good_bad_relation(relations_list, chain_of_letters)
+        else:
+            task = [good_bad_relation(relations_list, chain_of_letters)[0]]
+            while len(task) < 4:
+                new_task = good_bad_relation(relations_list, chain_of_letters)[1]
+                if new_task not in task:
+                    task.append(new_task)
+
+        answer = task[0]
+        random.shuffle(task)
 
         return relations_list, task, answer
 
@@ -342,14 +384,11 @@ class Trial:
 
         # Creating task and answer
         if self.bin:
-            print "b"
             task = good_bad_relation()
         else:
-            print "a"
             task = [good_bad_relation()[0]]
             while len(task) < 4:
                 new_task = good_bad_relation()[1]
-                print new_task, task
                 if new_task not in task:
                     task.append(new_task)
 

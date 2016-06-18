@@ -26,5 +26,5 @@ class Experiment:
 
     def save(self):
         info = self.prepare_concrete()
-        with open(self.name + ".yaml", 'w') as save_file:
+        with open("data/" + self.name + ".yaml", 'w') as save_file:
             save_file.write(yaml.dump(info))
