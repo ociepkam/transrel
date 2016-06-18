@@ -7,14 +7,14 @@ import string
 
 __author__ = 'ociepkam'
 
-
 SampleTypes = {
     'letters': 'letters',
     'figures': 'figures',
     'NamesHeightRelations': 'NamesHeightRelations',
     'NamesAgeRelations': 'NamesAgeRelations',
     'symbols': 'symbols',
-    'numbers': 'numbers'
+    'numbers': 'numbers',
+    'greek_letters': 'greek_letters'
 }
 
 # General relations types.
@@ -22,6 +22,7 @@ Relations = {
     'major': '>',
     'minor': '<'
 }
+
 
 # Age relations types for name samples.
 class NamesAgeRelations(Enum):
@@ -86,6 +87,15 @@ figures = (
 symbols = list(set("~!@#%&*?|"))
 
 numbers = list(set("0123456789"))
+
+greek_letters = [u'\u0391', u'\u0392', u'\u0393', u'\u0394', u'\u0395', u'\u0396', u'\u0397', u'\u0398', u'\u0399',
+                 u'\u039A', u'\u039B', u'\u039C', u'\u039D', u'\u039E', u'\u039F', u'\u03A0', u'\u03A1', u'\u03A2',
+                 u'\u03A3', u'\u03A4', u'\u03A5', u'\u03A6', u'\u03A7', u'\u03A8', u'\u03A9',
+                 # uppercases
+                 u'\u03B1', u'\u03B2', u'\u03B3', u'\u03B4', u'\u03B5', u'\u03B6', u'\u03B7', u'\u03B8', u'\u03B9',
+                 u'\u03BA', u'\u03BB', u'\u03BC', u'\u03BD', u'\u03BE', u'\u03BF', u'\u03C0', u'\u03C1', u'\u03C2',
+                 u'\u03C3', u'\u03C4', u'\u03C5', u'\u03C6', u'\u03C7', u'\u03C8', u'\u03C9']
+
 
 class Trial:
     def __init__(self, sample_type, n, nr, memory, integr, show_time, resp_time, maxtime, feedb, feedb_time, wait, exp,
@@ -164,6 +174,10 @@ class Trial:
             stimulus_nr = random.sample(range(len(numbers)), self.n + 1)
             for idx in stimulus_nr:
                 chain_of_letters.append(numbers[idx])
+        elif self.sample_type == "greek_letters":
+            stimulus_nr = random.sample(range(len(greek_letters)), self.n + 1)
+            for idx in stimulus_nr:
+                chain_of_letters.append(greek_letters[idx])
         else:
             stimulus_nr = random.sample(range(len(figures)), self.n + 1)
             for idx in stimulus_nr:
@@ -287,7 +301,7 @@ class Trial:
         # Creating task and answer
 
         def good_bad_relation(relations_chain, relations_list):
-            if self.trial_type == 1 or self.relations_list == 2:
+            if self.trial_type == 1 or self.trial_type == 2:
                 rel = random.choice(relations_list)
                 first_task = rel
                 second_task = rel[::-1]
@@ -310,7 +324,7 @@ class Trial:
             task = [good_bad_relation(chain_of_figures, relations_list)[0]]
             while len(task) < 4:
                 new_task = good_bad_relation(chain_of_figures, relations_list)[1]
-                if new_task not in task:
+                if (new_task not in task) or (self.trial_type >= self.n):
                     task.append(new_task)
 
         answer = task[0]
@@ -322,7 +336,8 @@ class Trial:
         Allow to choose task type.
         :return: Chain of pair of relations.
         """
-        if self.sample_type == "letters" or self.sample_type == "symbols" or self.sample_type == 'numbers':
+        if self.sample_type == "letters" or self.sample_type == "symbols" or self.sample_type == 'numbers' or \
+                        self.sample_type == 'greek_letters':
             relations_list, task, answer = self.create_sample_letters()
         elif self.sample_type == "NamesHeightRelations":
             relations_list, task, answer = self.create_sample_names(names_types["NamesHeightRelations"])
