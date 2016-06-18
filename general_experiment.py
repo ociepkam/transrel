@@ -45,8 +45,7 @@ def generate_trials_gui():
     parser.add_argument('--Instruction_show_time', default=5, action='store', type=int, help='Number')
 
     # Information about training
-    parser.add_argument('--Training_task', default='letters', choices=['letters', 'figures', 'NamesAgeRelations',
-                                                                       'NamesHeightRelations', 'symbols'],
+    parser.add_argument('--Training_task', default='letters', choices=['letters', 'figures', 'symbols', 'numbers'],
                         help='Choose trial type')
     parser.add_argument('--Training_number', default=1, action='store', type=int, help='Number of relations')
     parser.add_argument('--Training_memory', default='1', choices=['1', '0'], help='Choice')
@@ -63,8 +62,7 @@ def generate_trials_gui():
     parser.add_argument('--Training_trial_type', default='1', choices=['1', '2', '3', '4'], help='Choose view type')
 
     # Information about experiment
-    parser.add_argument('--Experiment_task', default='letters', choices=['letters', 'figures', 'NamesAgeRelations',
-                                                                       'NamesHeightRelations', 'symbols'],
+    parser.add_argument('--Experiment_task', default='letters', choices=['letters', 'figures', 'symbols', 'numbers'],
                         help='Choose trial type')
     parser.add_argument('--Experiment_number', default=1, action='store', type=int, help='Number of relations')
     parser.add_argument('--Experiment_memory', default='1', choices=['1', '0'], help='Choice')

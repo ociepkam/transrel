@@ -13,7 +13,8 @@ SampleTypes = {
     'figures': 'figures',
     'NamesHeightRelations': 'NamesHeightRelations',
     'NamesAgeRelations': 'NamesAgeRelations',
-    'symbols': 'symbols'
+    'symbols': 'symbols',
+    'numbers': 'numbers'
 }
 
 # General relations types.
@@ -84,6 +85,7 @@ figures = (
 
 symbols = list(set("~!@#%&*?|"))
 
+numbers = list(set("0123456789"))
 
 class Trial:
     def __init__(self, sample_type, n, nr, memory, integr, show_time, resp_time, maxtime, feedb, feedb_time, wait, exp,
@@ -150,14 +152,20 @@ class Trial:
         There are two types of relations "<" and ">"
         :return: Chain of pair of relations.
         """
-        stimulus_nr = random.sample(range(0, 8), self.n + 1)
+
         relations_list = []
         chain_of_letters = []
 
         if self.sample_type == "letters":
+            stimulus_nr = random.sample(range(len(letters)), self.n + 1)
             for idx in stimulus_nr:
                 chain_of_letters.append(letters[idx])
+        elif self.sample_type == "numbers":
+            stimulus_nr = random.sample(range(len(numbers)), self.n + 1)
+            for idx in stimulus_nr:
+                chain_of_letters.append(numbers[idx])
         else:
+            stimulus_nr = random.sample(range(len(figures)), self.n + 1)
             for idx in stimulus_nr:
                 chain_of_letters.append(symbols[idx])
 
@@ -314,7 +322,7 @@ class Trial:
         Allow to choose task type.
         :return: Chain of pair of relations.
         """
-        if self.sample_type == "letters" or self.sample_type == "symbols":
+        if self.sample_type == "letters" or self.sample_type == "symbols" or self.sample_type == 'numbers':
             relations_list, task, answer = self.create_sample_letters()
         elif self.sample_type == "NamesHeightRelations":
             relations_list, task, answer = self.create_sample_names(names_types["NamesHeightRelations"])
