@@ -276,8 +276,37 @@ class Trial:
             stimulus_2 = chain_of_figures[idx + 1]
             relations_list.append([stimulus_1, stimulus_2])
 
-        task, answer = self.create_task(chain_of_figures)
+        # Creating task and answer
 
+        def good_bad_relation(relations_chain, relations_list):
+            if self.trial_type == 1 or self.relations_list == 2:
+                rel = random.choice(relations_list)
+                first_task = rel
+                second_task = rel[::-1]
+                return [first_task, second_task]
+            elif self.trial_type == 3:
+                first = random.randint(0, self.n - 2)
+                second = first + 2
+            else:
+                first = random.randint(0, self.n - 3)
+                second = first + 3
+
+            first_task = [relations_chain[first], relations_chain[second]]
+            second_task = [relations_chain[second], relations_chain[first]]
+            return [first_task, second_task]
+
+        # Creating task and answer
+        if self.bin:
+            task = good_bad_relation(chain_of_figures, relations_list)
+        else:
+            task = [good_bad_relation(chain_of_figures, relations_list)[0]]
+            while len(task) < 4:
+                new_task = good_bad_relation(chain_of_figures, relations_list)[1]
+                if new_task not in task:
+                    task.append(new_task)
+
+        answer = task[0]
+        random.shuffle(task)
         return relations_list, task, answer
 
     def create_sample(self):
@@ -292,7 +321,7 @@ class Trial:
         elif self.sample_type == "NamesAgeRelations":
             relations_list, task, answer = self.create_sample_names(names_types["NamesAgeRelations"])
         else:
-            relations_list, task, [answer] = self.create_sample_figures()
+            relations_list, task, answer = self.create_sample_figures()
 
         self.shuffle_sample(relations_list)
 
