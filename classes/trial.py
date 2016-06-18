@@ -8,19 +8,19 @@ import string
 __author__ = 'ociepkam'
 
 
-class SampleTypes(Enum):
-    letters = 'letters'
-    figures = 'figures'
-    NamesHeightRelations = 'NamesHeightRelations'
-    NamesAgeRelations = 'NamesAgeRelations'
-    symbols = 'symbols'
-
+SampleTypes = {
+    'letters': 'letters',
+    'figures': 'figures',
+    'NamesHeightRelations': 'NamesHeightRelations',
+    'NamesAgeRelations': 'NamesAgeRelations',
+    'symbols': 'symbols'
+}
 
 # General relations types.
-class Relations(Enum):
-    major = '>'
-    minor = '<'
-
+Relations = {
+    'major': '>',
+    'minor': '<'
+}
 
 # Age relations types for name samples.
 class NamesAgeRelations(Enum):
@@ -162,17 +162,17 @@ class Trial:
                 chain_of_letters.append(symbols[idx])
 
         for idx in range(0, self.n):
-            stimulus_type = random.choice([Relations.major, Relations.minor])
+            stimulus_type = random.choice([Relations['major'], Relations['minor']])
             stimulus_1 = chain_of_letters[idx]
             stimulus_2 = chain_of_letters[idx + 1]
 
-            if stimulus_type == Relations.minor:
+            if stimulus_type == Relations['minor']:
                 relation = stimulus_1 + stimulus_type + stimulus_2
                 relations_list.append(relation)
             else:
                 relation = stimulus_2 + stimulus_type + stimulus_1
                 relations_list.append(relation)
-
+        print relations_list
         task, answer = self.create_task(chain_of_letters)
 
         return relations_list, task, answer
@@ -192,11 +192,11 @@ class Trial:
             chain_of_names.append(names[idx])
 
         for idx in range(0, self.n):
-            stimulus_type = random.choice([Relations.major, Relations.minor])
+            stimulus_type = random.choice([Relations['major'], Relations['minor']])
             stimulus_1 = chain_of_names[idx]
             stimulus_2 = chain_of_names[idx + 1]
 
-            if stimulus_type == Relations.minor:
+            if stimulus_type == Relations['minor']:
                 if stimulus_1['sex'] == 'F':
                     stimulus_type = sample_type.minor_F
                 else:
@@ -300,12 +300,9 @@ class Trial:
         """
 
         def good_bad_relation():
-            if self.trial_type == 1:
+            if self.trial_type == 1 or self.relations_list == 2:
                 first = random.randint(0, self.n - 1)
                 second = first + 1
-            elif self.trial_type == 2:
-                second = random.randint(0, self.n - 1)
-                first = second + 1
             elif self.trial_type == 3:
                 first = random.randint(0, self.n - 2)
                 second = first + 2
@@ -313,15 +310,15 @@ class Trial:
                 first = random.randint(0, self.n - 3)
                 second = first + 3
 
-            if self.sample_type == SampleTypes.figures:
+            if self.sample_type == SampleTypes['figures']:
                 first_task = [relations_chain[first], relations_chain[second]]
                 second_task = [relations_chain[second], relations_chain[first]]
 
-            elif self.sample_type == SampleTypes.letters or self.sample_type == SampleTypes.symbols:
-                first_task = relations_chain[first] + Relations.minor + relations_chain[second]
-                second_task = relations_chain[second] + Relations.minor + relations_chain[first]
+            elif self.sample_type == SampleTypes['letters'] or self.sample_type == SampleTypes['symbols']:
+                first_task = relations_chain[first] + Relations['minor'] + relations_chain[second]
+                second_task = relations_chain[second] + Relations['minor'] + relations_chain[first]
             else:
-                if self.sample_type == SampleTypes.NamesAgeRelations:
+                if self.sample_type == SampleTypes['NamesAgeRelations']:
                     if relations_chain[first]['sex'] == 'M':
                         first_relation = NamesAgeRelations.minor_M
                     else:
@@ -345,17 +342,19 @@ class Trial:
 
         # Creating task and answer
         if self.bin:
+            print "b"
             task = good_bad_relation()
-            random.shuffle(task)
         else:
-            task = good_bad_relation()[0]
+            print "a"
+            task = [good_bad_relation()[0]]
             while len(task) < 4:
                 new_task = good_bad_relation()[1]
+                print new_task, task
                 if new_task not in task:
                     task.append(new_task)
 
         answer = task[0]
-        task = random.shuffle(task)
+        random.shuffle(task)
         return task, answer
 
     def prepare_general(self):

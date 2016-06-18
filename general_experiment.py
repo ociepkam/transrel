@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from gooey import Gooey, GooeyParser
-from classes.trial import SampleTypes
 from openpyxl import Workbook
 
 __author__ = 'ociepkam'
@@ -16,7 +15,7 @@ def save_to_xlsx(tab, filename):
     # Data can be assigned directly to cells
     ws.append(
         ['BLOCK_NUMBER', 'SAMPLE_TYPE', 'N', 'NR', 'MEMORY', 'INTEGR', 'SHOW_TIME', 'RESP_TIME', 'MAX_TIME', 'FEEDB',
-         'FEEDB_TIME', 'WAIT', 'EXP', 'FIX_TIME', 'LIST_VIEW', 'BIN', 'TRAIL_TYPE' 'INSTRUCTION'])
+         'FEEDB_TIME', 'WAIT', 'EXP', 'FIX_TIME', 'LIST_VIEW', 'BIN', 'TRAIL_TYPE', 'INSTRUCTION'])
 
     for idx, trial in enumerate(tab):
         if trial[1] == "instruction":
@@ -46,9 +45,9 @@ def generate_trials_gui():
     parser.add_argument('--Instruction_show_time', default=5, action='store', type=int, help='Number')
 
     # Information about training
-    parser.add_argument('--Training_task', default=SampleTypes.letters,
-                        choices=[SampleTypes.letters, SampleTypes.figures, SampleTypes.NamesAgeRelations,
-                                 SampleTypes.NamesHeightRelations, SampleTypes.symbols], help='Choose trial type')
+    parser.add_argument('--Training_task', default='letters', choices=['letters', 'figures', 'NamesAgeRelations',
+                                                                       'NamesHeightRelations', 'symbols'],
+                        help='Choose trial type')
     parser.add_argument('--Training_number', default=1, action='store', type=int, help='Number of relations')
     parser.add_argument('--Training_memory', default='1', choices=['1', '0'], help='Choice')
     parser.add_argument('--Training_integration', default='1', choices=['1', '0'], help='Choice')
@@ -64,9 +63,9 @@ def generate_trials_gui():
     parser.add_argument('--Training_trial_type', default='1', choices=['1', '2', '3', '4'], help='Choose view type')
 
     # Information about experiment
-    parser.add_argument('--Experiment_task', default=SampleTypes.letters,
-                        choices=[SampleTypes.letters, SampleTypes.figures, SampleTypes.NamesAgeRelations,
-                                 SampleTypes.NamesHeightRelations], help='Choose trial type')
+    parser.add_argument('--Experiment_task', default='letters', choices=['letters', 'figures', 'NamesAgeRelations',
+                                                                       'NamesHeightRelations', 'symbols'],
+                        help='Choose trial type')
     parser.add_argument('--Experiment_number', default=1, action='store', type=int, help='Number of relations')
     parser.add_argument('--Experiment_memory', default='1', choices=['1', '0'], help='Choice')
     parser.add_argument('--Experiment_integration', default='1', choices=['1', '0'], help='Choice')
@@ -94,14 +93,14 @@ def generate_trials_gui():
                      int(args.Training_integration), args.Training_show_time, args.Training_resp_time,
                      args.Training_maxtime, args.Training_feedback, args.Training_feedback_time,
                      args.Training_wait, 0, args.Training_fixtime, int(args.Training_list_view),
-                     int(args.Training_bin), int(args.Training_training_type)]
+                     int(args.Training_bin), int(args.Training_trial_type)]
             experiment.append(trial)
         for idx in range(0, args.Number_of_experiment_trials):
             trial = [block + 1, args.Experiment_task, args.Experiment_number, idx + 1, int(args.Experiment_memory),
                      int(args.Experiment_integration), args.Experiment_show_time, args.Experiment_resp_time,
                      args.Experiment_maxtime, args.Experiment_feedback, args.Experiment_feedback_time,
                      args.Experiment_wait, 1, args.Experiment_fixtime, int(args.Experiment_list_view),
-                     int(args.Experiment_bin), int(args.Experiment_training_type)]
+                     int(args.Experiment_bin), int(args.Experiment_trial_type)]
             experiment.append(trial)
 
     save_to_xlsx(experiment, args.File_name)

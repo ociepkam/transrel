@@ -45,13 +45,15 @@ def main():
     parser.add_argument('Participant_Age', default=0, type=int)
     parser.add_argument('Participant_Sex', default='M', choices=['M', 'F'])
     parser.add_argument('Random', default='True', choices=['True', 'False'], help="Present trials in random order")
-    parser.add_argument('EEG_connected', default='1', choices=['1', '0'], help='Choice')
+    parser.add_argument('EEG_connected', default='0', choices=['1', '0'], help='Choice')
+    parser.add_argument('NIRS_connected', default='0', choices=['1', '0'], help='Choice')
 
     args = parser.parse_args()
 
     number_of_blocks, data = load_info(args.Experiment_file_name)
 
-    experiment = Experiment([], args.Participant_ID, args.Participant_Sex, args.Participant_Age, int(args.EEG_connected))
+    experiment = Experiment([], args.Participant_ID, args.Participant_Sex, args.Participant_Age,
+                            int(args.EEG_connected), int(args.NIRS_connected))
 
     for idx in range(number_of_blocks):
         block = Block([])
@@ -70,7 +72,8 @@ def main():
             trial = Instruction(trial_info['INSTRUCTION'], instruction_type, trial_info['SHOW_TIME'])
         else:
             trial = Trial(trial_info['SAMPLE_TYPE'], trial_info['N'], trial_info['NR'], trial_info['MEMORY'],
-                          trial_info['INTEGR'], trial_info['SHOW_TIME'], trial_info['RESP_TIME'], trial_info['MAX_TIME'],
+                          trial_info['INTEGR'], trial_info['SHOW_TIME'], trial_info['RESP_TIME'],
+                          trial_info['MAX_TIME'],
                           trial_info['FEEDB'], trial_info['FEEDB_TIME'], trial_info['WAIT'], trial_info['EXP'],
                           trial_info['FIX_TIME'], trial_info['LIST_VIEW'], trial_info['BIN'], trial_info['TRAIL_TYPE'])
             trial.create_sample()
