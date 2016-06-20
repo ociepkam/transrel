@@ -20,7 +20,7 @@ def load_info(filename):
     for row_idx in range(len(sheet.columns[0]) - 1):
         trial = {}
         for column_idx, column in enumerate(sheet.columns):
-            if column_idx == 20:
+            if column_idx == 13:
                 break
             if isinstance(column[row_idx + 1].value, (str, unicode)):
                 trial.update({str(column[0].value): str(column[row_idx + 1].value)})
@@ -69,13 +69,11 @@ def main():
                 instruction_type = 'image'
             else:
                 raise AssertionError("wrong instruction file type")
-            trial = Instruction(trial_info['INSTRUCTION'], instruction_type, trial_info['SHOW_TIME'])
+            trial = Instruction(trial_info['INSTRUCTION'], instruction_type, trial_info['STIMTIME'])
         else:
-            trial = Trial(trial_info['SAMPLE_TYPE'], trial_info['N'], trial_info['NR'], trial_info['MEMORY'],
-                          trial_info['INTEGR'], trial_info['SHOW_TIME'], trial_info['RESP_TIME'],
-                          trial_info['MAX_TIME'],
-                          trial_info['FEEDB'], trial_info['FEEDB_TIME'], trial_info['WAIT'], trial_info['EXP'],
-                          trial_info['FIX_TIME'], trial_info['LIST_VIEW'], trial_info['BIN'], trial_info['TRAIL_TYPE'])
+            trial = Trial(trial_info['SAMPLE_TYPE'], trial_info['N'], trial_info['NR'], trial_info['STIMTIME'],
+                          trial_info['RESPTIME'], trial_info['FEEDB'], trial_info['FEEDB_TIME'], trial_info['WAIT'],
+                          trial_info['EXP'], trial_info['BIN'], trial_info['TRAIL_TYPE'])
             trial.create_sample()
         experiment.list_of_blocks[block_number - 1].list_of_trials.append(trial)
 

@@ -98,22 +98,13 @@ greek_letters = [u'\u0391', u'\u0392', u'\u0393', u'\u0394', u'\u0395', u'\u0396
 
 
 class Trial:
-    def __init__(self, sample_type, n, nr, memory, integr, show_time, resp_time, maxtime, feedb, feedb_time, wait, exp,
-                 fixtime, view_list, bin, trial_type):
+    def __init__(self, sample_type, n, nr, stim_time, resp_time, feedb, feedb_time, wait, exp, bin, trial_type):
         """
         :param sample_type: kind of stimulus. All possibilities in SampleTypes class.
         :param n: number of relations in trial. n+1 number od elements in relation chain
         :param nr: Trial index. Different for each Trial.
-        :param memory:
-            (memory == 1) => Participant can't see stimulus when answering.
-            (memory == 0) => Participant see all stimulus from Trial when answering.
-        :param integr:
-            (integr == 1) => Question contain first and last element from relation chain.
-            (integr == 0) => Question contain two random element from relation chain.
-                                This element have to be neighbors.
-        :param show_time: how long participant can see each relations.
+        :param stim_time: how long participant can see each relations.
         :param resp_time: time between trials
-        :param maxtime: time for answer.
         :param feedb:
             0 - doesn't show result for this Trial.
             1 - show result for this Trial.
@@ -122,9 +113,6 @@ class Trial:
         :param exp:
             (exp == 1) => Experiment Trial.
             (exp == 0) => Test Trail.
-        :param view_list:
-            (view_list == 1) => Relation under relation - for tablets.
-            (view_list == 0) => All relations shown at the same place.
         :param bin:
             0 - generate four answers
             1 - generate two answers
@@ -138,20 +126,15 @@ class Trial:
         self.sample_type = sample_type
         self.n = n
         self.nr = nr
-        self.memory = int(memory)
-        self.integr = int(integr)
-        self.show_time = show_time
+        self.stim_time = stim_time
         self.resp_time = resp_time
-        self.maxtime = maxtime
         self.feedb = feedb
         self.feedb_time = feedb_time
         self.wait = wait
         self.exp = int(exp)
-        self.fixtime = fixtime
         self.relations_list = None
         self.task = None
         self.answer = None
-        self.view_list = int(view_list)
         self.type = 'trial'
         self.bin = bin
         self.trial_type = trial_type
@@ -454,17 +437,12 @@ class Trial:
             'SAMPLE_TYPE': self.sample_type,
             'N': self.n,
             'NR': self.nr,
-            'MEMORY': self.memory,
-            'INTEGR': self.integr,
-            'SHOW_TIME': self.show_time,
-            'RESP_TIME': self.resp_time,
-            'MAX_TIME': self.maxtime,
+            'STIMTIME': self.stim_time,
+            'RESPTIME': self.resp_time,
             'FEEDB': self.feedb,
             'FEEDB_TIME': self.feedb_time,
             'WAIT': self.wait,
             'EXP': self.exp,
-            'FIX_TIME': self.fixtime,
-            'LIST_VIEW': self.view_list,
             'BIN': self.bin,
             'TRIAL_TYPE': self.trial_type
         }

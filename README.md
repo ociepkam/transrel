@@ -27,68 +27,47 @@ Test integracji relacji
     D) NR
     - numer kolejnego triala
 
-    E) MEMORY
-    - okresla typ zadania
-    - może przyjmować wartości 1, 0
-
-    F) INTEGR
-    - okresla typ zadania
-    - może przyjmować wartości 1, 0
-
-    G) SHOW_TIME
+    E) STIMTIME
     - liczba naturalna dodatnia
     - czas prezentacji każdej z relacji określony w sekundach
 
-    H) REST_TIME
+    F) RESTTIME
     - liczba naturalna dodatnia
     - długośc przerwy pomiędzy relacjami określona w sekundach
 
-    I) MAX__TIME
-    - liczba naturalna dodatnia
-    - czas na odpowiedź określona w sekundach
-
-    J) FEEDB
+    G) FEEDB
     - może przyjmować wartości 0, 1 albo 2
         * 0 (nie wyświetlaj informacji o poprawności rozwiązania tego triala)
         * 1 (wyświetl informację o poprawności rozwiązania tego triala)
         * 2 (na koniec testu podaj całkowity wynik wszystkich rozwiązanych triali)
 
-    I) FEEDB_TIME
+    H) FEEDB_TIME
     - liczba naturalna dodatnia
     - czas wyświetlania FEEDB określona w sekundach
 
-    L) WAIT
+    I) WAIT
     - liczba naturalna
         * 0 ( po trialu wyświetla napis „naciśnij przycisk” i czeka na reakcję badanego- czas na odpoczynek)
         * inne (czas przerwy pomiędzy próbami określony w sekundach)
 
-    M) EXP
+    J) EXP
     - może przyjmować wartości 0, 1
         * 0 trial testowy
         * 1 trial experymentalny
 
-    N) FIX__TIME
-    - liczba naturalna dodatnia
-    - czas wyświetlania punktu fixacji określona w sekundach
-
-    0) LIST_VIEW
-    - może przyjmować wartości 0, 1
-        * 1 wyświetla odpowiedzi jedna pod drugę
-        * 0 wyświetla odpowiedzi po sobie
-
-    P) BIN
+    K) BIN
     - może przyjmować wartości 0, 1
         * 0 cztery odpowiedzi
         * 1 dwie odpowiedzi
 
-    R) TRIAL_TYPE
+    L) TRIAL_TYPE
     - może przyjmować wartości 1, 2, 3, 4
         * 1 poprawna odpowiedź jest jedną z wyświetlanych relacji
         * 2 poprawna odpowiedź jest jedną z wyświetlanych relacji o odwróconym znaku wiekszości/mniejszości
         * 3 poprawną odpowiedzią są dwa obiekty oddzielone od siebie jednym elementem
         * 4 poprawną odpowiedzią są dwa obiekty oddzielone od siebie dwoma elementami
 
-    P) INSTRUCTION
+    M) INSTRUCTION
     - link do pliku
     - plik w formacie txt, bmp, jpg
     - przed trialem wyświetla informację znajdująca się w pliku
@@ -110,7 +89,7 @@ Test integracji relacji
         * instruction
             + instruction_type (text, image)
             + path (ścieżka do pliku zawierającego instrukcję, TIP)
-            + time (SHOW_TIME)
+            + time (STIMTIME)
             + type (SAMPLE_TYPE)
         * trial
             + poza elementami opisanymi w podpunkcie 1 zawiera:

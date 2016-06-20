@@ -2,164 +2,124 @@ EEG: 0
 LIST_OF_BLOCKS:
 - experiment_elements:
   - {INSTRUCTION_TYPE: text, PATH: intruction.txt, TIME: 5, TYPE: instruction}
-  - ANSWER: "\u03B3<\u0393"
-    BIN: 0
+  - ANSWER: T>C
+    BIN: 1
     EXP: 0
     FEEDB: 1
     FEEDB_TIME: 1
-    FIX_TIME: 1
-    INTEGR: 1
-    LIST_VIEW: 1
-    MAX_TIME: 1
-    MEMORY: 1
-    N: 4
-    NR: 2
-    RELATIONS_LIST: ["\u03C9>\u0395", "\u03BC>\u03C9", "\u03B3>\u03BC", "\u0393>\u03B3"]
-    RESP_TIME: 1
-    SAMPLE_TYPE: greek_letters
-    SHOW_TIME: 1
-    TASK: ["\u03C9>\u03BC", "\u03B3<\u0393", "\u0395>\u03C9", "\u03B3>\u0393"]
-    TRIAL_TYPE: 2
-    TYPE: trial
-    WAIT: 1
-  - ANSWER: "\u039F>\u03C8"
-    BIN: 0
-    EXP: 0
-    FEEDB: 1
-    FEEDB_TIME: 1
-    FIX_TIME: 1
-    INTEGR: 1
-    LIST_VIEW: 1
-    MAX_TIME: 1
-    MEMORY: 1
-    N: 4
-    NR: 3
-    RELATIONS_LIST: ["\u03A1<\u0393", "\u0393<\u039D", "\u03C8>\u039D", "\u03C8<\u039F"]
-    RESP_TIME: 1
-    SAMPLE_TYPE: greek_letters
-    SHOW_TIME: 1
-    TASK: ["\u039F>\u03C8", "\u0393<\u03A1", "\u039F<\u03C8", "\u039D>\u03C8"]
-    TRIAL_TYPE: 2
-    TYPE: trial
-    WAIT: 1
-  - ANSWER: "\u03C2>\u0392"
-    BIN: 0
-    EXP: 0
-    FEEDB: 1
-    FEEDB_TIME: 1
-    FIX_TIME: 1
-    INTEGR: 1
-    LIST_VIEW: 1
-    MAX_TIME: 1
-    MEMORY: 1
-    N: 4
-    NR: 4
-    RELATIONS_LIST: ["\u0395<\u03C6", "\u0392>\u03C6", "\u0392<\u03C2", "\u03C2<\u03BC"]
-    RESP_TIME: 1
-    SAMPLE_TYPE: greek_letters
-    SHOW_TIME: 1
-    TASK: ["\u03C2>\u0392", "\u03C6>\u0392", "\u03C2<\u0392", "\u03C6<\u0395"]
-    TRIAL_TYPE: 2
-    TYPE: trial
-    WAIT: 1
-  - ANSWER: "\u03B1>\u039A"
-    BIN: 0
-    EXP: 1
-    FEEDB: 1
-    FEEDB_TIME: 1
-    FIX_TIME: 1
-    INTEGR: 1
-    LIST_VIEW: 1
-    MAX_TIME: 1
-    MEMORY: 1
-    N: 4
-    NR: 3
-    RELATIONS_LIST: ["\u03A8<\u03BB", "\u039A>\u03BB", "\u039A<\u03B1", "\u03B1<\u039F"]
-    RESP_TIME: 1
-    SAMPLE_TYPE: greek_letters
-    SHOW_TIME: 1
-    TASK: ["\u03B1>\u039A", "\u03BB<\u03A8", "\u03B1<\u039A", "\u039F<\u03B1"]
-    TRIAL_TYPE: 2
-    TYPE: trial
-    WAIT: 1
-  - ANSWER: "\u039A>\u03C8"
-    BIN: 0
-    EXP: 1
-    FEEDB: 1
-    FEEDB_TIME: 1
-    FIX_TIME: 1
-    INTEGR: 1
-    LIST_VIEW: 1
-    MAX_TIME: 1
-    MEMORY: 1
-    N: 4
-    NR: 4
-    RELATIONS_LIST: ["\u039E<\u03B3", "\u0399>\u03B3", "\u0399<\u03C8", "\u03C8<\u039A"]
-    RESP_TIME: 1
-    SAMPLE_TYPE: greek_letters
-    SHOW_TIME: 1
-    TASK: ["\u03B3>\u0399", "\u039A<\u03C8", "\u03B3<\u039E", "\u039A>\u03C8"]
-    TRIAL_TYPE: 2
-    TYPE: trial
-    WAIT: 1
-  - ANSWER: "\u03C5<\u03A7"
-    BIN: 0
-    EXP: 0
-    FEEDB: 1
-    FEEDB_TIME: 1
-    FIX_TIME: 1
-    INTEGR: 1
-    LIST_VIEW: 1
-    MAX_TIME: 1
-    MEMORY: 1
     N: 4
     NR: 1
-    RELATIONS_LIST: ["\u03A7>\u03C5", "\u03C8>\u03A7", "\u03C8<\u03C2", "\u03C2<\u03C9"]
-    RESP_TIME: 1
-    SAMPLE_TYPE: greek_letters
-    SHOW_TIME: 1
-    TASK: ["\u03A7>\u03C8", "\u03C9<\u03C2", "\u03C5<\u03A7", "\u03C5>\u03A7"]
-    TRIAL_TYPE: 2
+    RELATIONS_LIST: [R<H, H<B, B<C, T>C]
+    RESPTIME: 1
+    SAMPLE_TYPE: letters
+    STIMTIME: 1
+    TASK: [T>C, T<C]
+    TRIAL_TYPE: 1
     TYPE: trial
     WAIT: 1
-  - ANSWER: "\u03C2>\u03B2"
-    BIN: 0
+  - ANSWER: L<W
+    BIN: 1
     EXP: 1
     FEEDB: 1
     FEEDB_TIME: 1
-    FIX_TIME: 1
-    INTEGR: 1
-    LIST_VIEW: 1
-    MAX_TIME: 1
-    MEMORY: 1
     N: 4
     NR: 1
-    RELATIONS_LIST: ["\u03C4>\u03A8", "\u03C4<\u03A5", "\u03B2>\u03A5", "\u03B2<\u03C2"]
-    RESP_TIME: 1
-    SAMPLE_TYPE: greek_letters
-    SHOW_TIME: 1
-    TASK: ["\u03A5<\u03C4", "\u03C2>\u03B2", "\u03A5>\u03B2", "\u03A8>\u03C4"]
-    TRIAL_TYPE: 2
+    RELATIONS_LIST: [L>H, L<W, C>W, Q>C]
+    RESPTIME: 1
+    SAMPLE_TYPE: letters
+    STIMTIME: 1
+    TASK: [L>W, L<W]
+    TRIAL_TYPE: 1
     TYPE: trial
     WAIT: 1
-  - ANSWER: "\u03B9<\u03BC"
-    BIN: 0
+  - ANSWER: B>Z
+    BIN: 1
+    EXP: 0
+    FEEDB: 1
+    FEEDB_TIME: 1
+    N: 4
+    NR: 2
+    RELATIONS_LIST: [Z>N, B>Z, B<G, G<Q]
+    RESPTIME: 1
+    SAMPLE_TYPE: letters
+    STIMTIME: 1
+    TASK: [B<Z, B>Z]
+    TRIAL_TYPE: 1
+    TYPE: trial
+    WAIT: 1
+  - ANSWER: D<F
+    BIN: 1
     EXP: 1
     FEEDB: 1
     FEEDB_TIME: 1
-    FIX_TIME: 1
-    INTEGR: 1
-    LIST_VIEW: 1
-    MAX_TIME: 1
-    MEMORY: 1
+    N: 4
+    NR: 4
+    RELATIONS_LIST: [V>N, D>V, D<F, F<C]
+    RESPTIME: 1
+    SAMPLE_TYPE: letters
+    STIMTIME: 1
+    TASK: [D<F, D>F]
+    TRIAL_TYPE: 1
+    TYPE: trial
+    WAIT: 1
+  - ANSWER: S>M
+    BIN: 1
+    EXP: 0
+    FEEDB: 1
+    FEEDB_TIME: 1
+    N: 4
+    NR: 4
+    RELATIONS_LIST: [J>L, C>J, C<M, S>M]
+    RESPTIME: 1
+    SAMPLE_TYPE: letters
+    STIMTIME: 1
+    TASK: [S>M, S<M]
+    TRIAL_TYPE: 1
+    TYPE: trial
+    WAIT: 1
+  - ANSWER: G>P
+    BIN: 1
+    EXP: 0
+    FEEDB: 1
+    FEEDB_TIME: 1
+    N: 4
+    NR: 3
+    RELATIONS_LIST: [Q>J, K>Q, K<P, G>P]
+    RESPTIME: 1
+    SAMPLE_TYPE: letters
+    STIMTIME: 1
+    TASK: [G>P, G<P]
+    TRIAL_TYPE: 1
+    TYPE: trial
+    WAIT: 1
+  - ANSWER: G>P
+    BIN: 1
+    EXP: 1
+    FEEDB: 1
+    FEEDB_TIME: 1
     N: 4
     NR: 2
-    RELATIONS_LIST: ["\u03A5<\u03B9", "\u03BC>\u03B9", "\u03BC<\u03A0", "\u03A0<\u03B3"]
-    RESP_TIME: 1
-    SAMPLE_TYPE: greek_letters
-    SHOW_TIME: 1
-    TASK: ["\u03B9>\u03BC", "\u03A0<\u03BC", "\u03B3<\u03A0", "\u03B9<\u03BC"]
-    TRIAL_TYPE: 2
+    RELATIONS_LIST: [G>P, G<X, X<Q, S>Q]
+    RESPTIME: 1
+    SAMPLE_TYPE: letters
+    STIMTIME: 1
+    TASK: [G>P, G<P]
+    TRIAL_TYPE: 1
+    TYPE: trial
+    WAIT: 1
+  - ANSWER: Z<Q
+    BIN: 1
+    EXP: 1
+    FEEDB: 1
+    FEEDB_TIME: 1
+    N: 4
+    NR: 3
+    RELATIONS_LIST: [J<M, M<Z, Z<Q, V>Q]
+    RESPTIME: 1
+    SAMPLE_TYPE: letters
+    STIMTIME: 1
+    TASK: [Z>Q, Z<Q]
+    TRIAL_TYPE: 1
     TYPE: trial
     WAIT: 1
 NAME: 1M1
